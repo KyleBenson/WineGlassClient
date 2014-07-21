@@ -2,6 +2,9 @@
 platforms/
 plugins/
 
+# CORDOVA
+info.txt
+
 # ANDROID / ECLIPSE
 
 # built application files
