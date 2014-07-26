@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--HTML5 camera application for use when all the browser's get their sh*t together and implement getUserMedia-->
+
+<html>
+  <head>
+    <title>Wine Glass</title>
+  </head>
+  <body>
+    <video autoplay></video>
+    <img src="">
+    <canvas style="display:none;"></canvas>
+
+    <script type="text/javascript">
+      navigator.getUserMedia  = navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia;
+
+      var video = document.querySelector('video');
+      var canvas = document.querySelector('canvas');
+      var ctx = canvas.getContext('2d');
+      var localMediaStream = null;
+
+      var errorCallback = function(e) {
+        console.log('Reeeejected!', e);
+      };
+
+      if (navigator.getUserMedia) {
+        navigator.getUserMedia({video: true}, function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+            localMediaStream = stream;
+            }, errorCallback);
+      } else {
+        video.src = 'somevideo.webm'; // fallback.
+        alert("No getusermedia!");
+      }
+
+    </script>
+
+  </body>
+</html>
+
