@@ -36,17 +36,45 @@
             </div>
         </div>
 
+        <!--DEBUG ONLY SCRIPTS-->
+        <!--<script type="text/javascript" src="http://192.168.1.2:8080/target/target-script-min.js#anonymous"></script>-->
+
+        <!--cordova dependencies-->
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+
+        <!--third-party dependencies-->
+        <script type="text/javascript" src="js/lawnchair.js"></script>
 
         <!--in-house dependencies-->
         <script type="text/javascript" src="js/camera.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <!--TODO: make this bigger / look good-->
+        <button type="button" onclick="takePicture();">Take Pictures Android</button>
+        <button type="button" onclick="uploadPictures();">Upload Pictures</button>
+
+        <form action="blah">
+        <input id="files" type="file" accept="image/*;capture=camera" name="files[]" multiple />
+        <output id="list"></output>
+       
 
         <script type="text/javascript">
             app.initialize();
+            
+            function handleInputPic(image) {
+                alert("nothing");
+            }
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+              document.getElementById('files').addEventListener('change', 
+                  inputHandlePictures, 
+                  false);
+            } else {
+              alert('The File APIs are not fully supported in this browser.');
+            }
         </script>
 
-        <!--TODO: make this bigger / look good-->
-        <button type="button" onclick="takePicture();">Take Pictures</button>
+      </form>
+
     </body>
 </html>
